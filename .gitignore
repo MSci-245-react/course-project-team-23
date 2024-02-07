@@ -5,4 +5,3 @@ serviceAccountKey.json
 .env
 package-lock.json
 client/package-lock.json
-config.js
