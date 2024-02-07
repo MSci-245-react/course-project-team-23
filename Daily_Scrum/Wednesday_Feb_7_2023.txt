@@ -1,0 +1,2 @@
+Jeevan: Yesterday, I started to look into datasets and thought about how we could merge/combine them. I also sketched a rough outline
+of the database schema (not complete, very rough).
