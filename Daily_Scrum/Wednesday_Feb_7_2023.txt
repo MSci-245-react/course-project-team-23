@@ -3,3 +3,5 @@ of the database schema (not complete, very rough).
 
 
 Chintan: At the beginning of the week, I began searching for datasets that we could utilize for application as that is the first step in our project timeline. Additionally, I also made a plan of the tasks that we have to complete throughout the week and sprint.
+
+Gisele: After deciding our first sprint with my team on Monday, I started to search database for designed recipes and trending meals meanwhile research implementation of features.
