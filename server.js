@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-
+console.log(config.host)
 
 // API to read movies from the database
 app.post('/api/getMovies', (req, res) => {
