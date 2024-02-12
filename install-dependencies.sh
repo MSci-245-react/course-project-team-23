@@ -1,10 +1,6 @@
 #!/bin/sh
 
-#yarn
-npm install
-npm install dotenv
+yarn
 cd client
-#yarn
-npm install
-npm install dotenv
+yarn
 cd ..
