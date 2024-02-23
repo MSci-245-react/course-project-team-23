@@ -1,30 +1,39 @@
-import React from 'react';
-import {FormControl, InputLabel, Select, MenuItem} from '@mui/material';
 
-function MovieSelection({movies, selectedMovie, handleMovieChange}) {
-  const handleMovieSelect = event => {
-    const selectedMovieId = event.target.value;
-    const selectedMovie = movies.find(movie => movie.id === selectedMovieId);
-    handleMovieChange(selectedMovie);
-  };
+import React, { useState, useEffect } from 'react';
+
+function FoodIngredientsList() {
+  const [foodIngredients, setFoodIngredients] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from your backend API endpoint
+    fetch('/api/foodIngredients')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data); // Log the data fetched from the server
+        setFoodIngredients(data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
 
   return (
-    <FormControl fullWidth>
-      <InputLabel id="movie-select-label">Select a movie</InputLabel>
-      <Select
-        value={selectedMovie ? selectedMovie.id : ''}
-        onChange={handleMovieSelect}
-        labelId="movie-select-label"
-        id="movie-select"
-      >
-        {movies.map((movie, index) => (
-          <MenuItem key={movie.id} value={movie.id}>
-            {movie.name}
-          </MenuItem>
+    <div>
+      <h1>Food Ingredients List</h1>
+      <ul>
+        {foodIngredients.map((ingredient, index) => (
+          <li key={index}>
+            <strong>Food Product:</strong> {ingredient['Food Product']},{' '}
+            <strong>Main Ingredient:</strong> {ingredient['Main Ingredient']}
+            {/* Add additional fields here */}
+          </li>
         ))}
-      </Select>
-    </FormControl>
+      </ul>
+    </div>
   );
 }
 
-export default MovieSelection;
+export default FoodIngredientsList;

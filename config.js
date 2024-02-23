@@ -1,10 +1,10 @@
 import "dotenv/config";
 
 let config = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
+  host    : 'ec2-3-137-65-169.us-east-2.compute.amazonaws.com',
+  user    : 'c4desai',
+  password: 'MSCI342',
+  database: 'c4desai'
 };
 
 export default config;

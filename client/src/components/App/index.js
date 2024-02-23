@@ -1,21 +1,27 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Review from '../Review';
-import SignIn from '../SignIn';
-import {FirebaseContext} from '../Firebase/index';
-import {auth} from '../Firebase/firebase';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Landing from '../Landing';
+import Discover from '../Discover'
+import { Typography, Grid, Button, Box } from '@mui/material/';
+
+
 
 const App = () => {
   return (
-    <FirebaseContext.Provider value={{auth}}>
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<SignIn />} />
+    <div>
+      <Router >
+
+        <div style = {{ margin: '0px', color: 'Black'}}>
+          <Routes >
+            <Route path="/" element={<Landing />} />
+            <Route path="/Discover" element={<Discover />} />
           </Routes>
         </div>
       </Router>
-    </FirebaseContext.Provider>
+    </div>
   );
 };
+
 export default App;
+
