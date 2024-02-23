@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from '../Landing';
 import Discover from '../Discover'
@@ -23,3 +24,4 @@ const App = () => {
 };
 
 export default App;
+
