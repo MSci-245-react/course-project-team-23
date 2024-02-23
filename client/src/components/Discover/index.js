@@ -1,11 +1,16 @@
+// PlanningPage.js
+
 import React, { useState, useEffect } from 'react';
-import { AppBar, Toolbar, Typography, Container, TextField, Button, Grid, Box, Paper, List, ListItem, ListItemText } from '@mui/material';
+import { AppBar, Toolbar, Typography, Container, TextField, Button, Grid, Box, Paper, List, ListItem, ListItemText, Rating, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 import { Link } from 'react-router-dom';
+import RatingForm from './RatingForm'; // Import the rating form component
 
 const PlanningPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [allFoodIngredients, setAllFoodIngredients] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState(null); // Track the selected meal for rating
+  const [openRatingForm, setOpenRatingForm] = useState(false); // State to control the visibility of the rating form
 
   useEffect(() => {
     // Fetch all food ingredients from backend API
@@ -36,6 +41,18 @@ const PlanningPage = () => {
       // Add additional fields here for searching
     );
     setSearchResults(results);
+  };
+
+  // Function to handle opening rating form
+  const handleOpenRatingForm = (meal) => {
+    setSelectedMeal(meal);
+    setOpenRatingForm(true);
+  };
+
+  // Function to handle closing rating form
+  const handleCloseRatingForm = () => {
+    setSelectedMeal(null);
+    setOpenRatingForm(false);
   };
 
   return (
@@ -84,10 +101,15 @@ const PlanningPage = () => {
                     <Typography variant="h5" gutterBottom>Search Results</Typography>
                     <List>
                       {searchResults.map((result, index) => (
-                        <ListItem key={index} divider>
+                        <ListItem key={index} divider button onClick={() => handleOpenRatingForm(result)}>
                           <ListItemText
                             primary={result['Food Product']}
                             secondary={`Main Ingredient: ${result['Main Ingredient']}`}
+                          />
+                          <Rating
+                            name={`rating-${index}`}
+                            value={result.rating} // Assuming the meal object has a 'rating' field
+                            readOnly
                           />
                         </ListItem>
                       ))}
@@ -101,6 +123,16 @@ const PlanningPage = () => {
           </Grid>
         </Box>
       </Container>
+
+      {/* Rating Form Dialog */}
+      <Dialog open={openRatingForm} onClose={handleCloseRatingForm}>
+        <DialogTitle>Rate Meal: {selectedMeal && selectedMeal['Food Product']}</DialogTitle>
+        <DialogContent>
+          {selectedMeal && (
+            <RatingForm meal={selectedMeal} onClose={handleCloseRatingForm} />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -1,59 +1,61 @@
 import mysql from 'mysql';
 import config from './config.js';
-import fetch from 'node-fetch';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import bodyParser from 'body-parser';
-import response from 'express';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 5000;
+
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-app.use(express.static(path.join(__dirname, "client/build")));
+// Set up MySQL connection pool
+const pool = mysql.createPool(config);
 
-// API to read movies from the database
-app.post('/api/getMovies', (req, res) => {
-	let connection = mysql.createConnection(config);
+// API to read meals from the database
+app.get('/api/foodIngredients', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting MySQL connection: ' + err.message);
+      res.status(500).send('Internal server error');
+      return;
+    }
+    connection.query('SELECT * FROM c4desai.food_ingredients_and_allergens', (error, results, fields) => {
+      connection.release(); // release connection
+      if (error) {
+        console.error('Error querying database: ' + error.message);
+        res.status(500).send('Error querying database');
+        return;
+      }
+      res.json(results); // send JSON response with the results
+    });
+  });
+});
+// Example endpoint using Express.js and MySQL
+// Example endpoint using Express.js and MySQL
+app.post('/api/rateMeal', (req, res) => {
+  const { name, rating, created_at } = req.body; // Assuming you receive these values from the frontend
+  
+  // Get a connection from the pool
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error getting MySQL connection: ' + err.message);
+      res.status(500).json({ error: 'Error getting MySQL connection' });
+      return;
+    }
 
-	const sql = `SELECT id, name, year, quality FROM movies`;
-
-	connection.query(sql, (error, results, fields) => {
-		if (error) {
-			return console.error(error.message);
-		}
-		let string = JSON.stringify(results);
-		res.send({ express: string });
-	});
-	connection.end();
+    const sql = 'INSERT INTO ratings (name, rating, created_at) VALUES (?, ?, ?)';
+    connection.query(sql, [name, rating, created_at], (error, results, fields) => {
+      connection.release(); // release connection
+      if (error) {
+        console.error('Error inserting rating:', error);
+        res.status(500).json({ error: 'Error inserting rating' });
+        return;
+      }
+      res.json({ message: 'Rating submitted successfully' });
+    });
+  });
 });
 
-// API to add a review to the database
-app.post('/api/addReview', (req, res) => {
-	const { userID, movieID, reviewTitle, reviewContent, reviewScore } = req.body;
 
-	let connection = mysql.createConnection(config);
-
-	const sql = `INSERT INTO Review (userID, movieID, reviewTitle, reviewContent, reviewScore) 
-				 VALUES (?, ?, ?, ?, ?)`;
-
-	const data = [userID, movieID, reviewTitle, reviewContent, reviewScore];
-
-	connection.query(sql, data, (error, results, fields) => {
-		if (error) {
-			console.error("Error adding review:", error.message);
-			return res.status(500).json({ error: "Error adding review to the database" });
-		}
-
-		return res.status(200).json({ success: true });
-	});
-	connection.end();
-});
-
-
-app.listen(port, () => console.log(`Listening on port ${port}`)); //for the dev version
+app.listen(port, () => console.log(`Listening on port ${port}`));
