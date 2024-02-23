@@ -1,6 +1,6 @@
 #!/bin/sh
 
-npm install
+yarn
 cd client
-npm install
+yarn
 cd ..
