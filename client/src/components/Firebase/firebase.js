@@ -1,36 +1,42 @@
-import app from 'firebase/app';
-import 'firebase/auth';
+// Import the functions you need from the SDKs you need
+import {initializeApp} from 'firebase/app';
+import {getAuth, GoogleAuthProvider} from 'firebase/auth';
+import {getAnalytics} from 'firebase/analytics';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  //Enter your firebase API details
-  };
-class Firebase {
-  constructor() {
-    app.initializeApp(firebaseConfig);
-    this.auth = app.auth();
-  }
-  
-  // *** Auth API ***
+  apiKey: 'AIzaSyDZd8efKLf0fx8j7uii2t2k_wMsJmPKrYo',
+  authDomain: 'fir-auth-meal-stream.firebaseapp.com',
+  projectId: 'fir-auth-meal-stream',
+  storageBucket: 'fir-auth-meal-stream.appspot.com',
+  messagingSenderId: '1021544741305',
+  appId: '1:1021544741305:web:da9f258932f79489af9e68',
+  measurementId: 'G-CP1TXLWXS2',
+};
 
-  doCreateUserWithEmailAndPassword = (email, password) =>
-  this.auth.createUserWithEmailAndPassword(email, password);
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_API_KEY,
+//   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+//   projectId: process.env.REACT_APP_PROJECT_ID,
+//   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+//   appId: process.env.REACT_APP_APP_ID,
+//   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+// };
 
-  doSignInWithEmailAndPassword = (email, password) =>
-  this.auth.signInWithEmailAndPassword(email, password);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-  doSignOut = () => this.auth.signOut();
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
 
-  doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
+// Initialize Firebase Analytics and get a reference to the service
+const analytics = getAnalytics(app);
 
-  doPasswordUpdate = password =>
-    this.auth.currentUser.updatePassword(password);
+const googleProvider = new GoogleAuthProvider();
 
-  doGetIdToken = (bool) => {
-    return this.auth.currentUser.getIdToken(/* forceRefresh */ bool);
-  }
-
-  doGetUserByEmail = email => this.auth.getUserByEmail(email);
-
-}
-
-export default Firebase;
+export {app, auth, analytics, googleProvider};

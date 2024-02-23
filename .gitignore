@@ -3,5 +3,6 @@ client/node_modules/
 client/build/
 serviceAccountKey.json
 .env
+client/.env
 package-lock.json
 client/package-lock.json

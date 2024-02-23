@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 let config = {
   host: process.env.DB_HOST,
