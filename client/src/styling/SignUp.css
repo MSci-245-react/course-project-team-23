@@ -1,0 +1,87 @@
+.signUpContainer {
+  width: 100%;
+  max-width: 400px; /* Adjust width as necessary */
+  padding: 50px; /* More padding for a spacious feel */
+  border-radius: 15px; /* Slightly more rounded corners for a softer look */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+  background: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Spacing between elements inside the container */
+}
+
+.inputField {
+  position: relative; /* Positioning for the icons or additional elements */
+}
+
+.typography-h4 {
+  font-size: 2.25rem; /* Slightly larger for emphasis */
+  margin-bottom: 30px; /* More space after the title */
+}
+
+.input {
+  background-color: #f7f7f7; /* Slightly off-white for the input backgrounds */
+  padding: 15px; /* More padding for a taller input field */
+  margin-bottom: 20px; /* Space between each input field */
+}
+
+.button {
+  padding: 15px 25px; /* Larger padding for a taller and wider button */
+  margin: 8px; /* Space around buttons */
+  font-size: 1rem; /* Larger font size for readability */
+  font-weight: 500; /* Less bold font for a modern look */
+  letter-spacing: 0.05em; /* Spacing between letters */
+}
+
+.google-sign-up {
+  background-color: #4285f4; /* Google's brand color */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centering text and icon */
+}
+
+.google-sign-up img {
+  margin-right: 10px;
+  width: 24px; /* Slightly larger icon for visibility */
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap; /* Wrap buttons to the next line on small screens */
+  gap: 10px; /* Spacing between buttons */
+  justify-content: center; /* Center the buttons if they don't fill the width */
+}
+
+/* Ensure the buttons don't stretch too much on larger screens */
+.button:not(.google-sign-up) {
+  max-width: 180px; /* Maximum width for standard buttons */
+}
+
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .signUpContainer {
+    padding: 30px;
+  }
+  .buttonRow {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+  }
+  .button {
+    width: 100%; /* Full-width buttons on small screens */
+    margin: 0 0 15px; /* Stack with space between */
+  }
+}
+
+/* Focus styles for input fields */
+.input:focus {
+  border-color: #4285f4; /* Highlight color when input is focused */
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2); /* Soft glow for focus */
+}
+
+/* Error styles */
+.errorText {
+  font-size: 0.875rem; /* Slightly smaller font for error messages */
+  margin-top: -5px; /* Closer to the input field */
+  margin-bottom: 20px; /* Space before the next element */
+}

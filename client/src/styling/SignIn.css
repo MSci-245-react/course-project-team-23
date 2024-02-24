@@ -1,3 +1,4 @@
+/* SignIn.css */
 @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
 
 body {
@@ -12,16 +13,16 @@ body {
 
 .signInContainer {
   width: 100%;
-  max-width: 350px;
+  max-width: 400px; /* Adjusted for better spacing */
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for a modern look */
   background: #fff;
   text-align: center;
 }
 
 .typography-h4 {
-  font-size: 2rem;
+  font-size: 2.5rem; /* Larger for emphasis */
   color: #333;
   font-family: 'Playfair Display', serif;
   margin-bottom: 24px;
@@ -30,48 +31,76 @@ body {
 .input {
   background-color: #eee;
   border: none;
-  padding: 14.5px;
-  margin: 8px 0;
-  width: 100%;
+  padding: 12px 15px; /* Slightly less padding for a neater look */
+  margin: 10px 0; /* Adjusted margin */
+  width: calc(100% - 30px); /* Full width minus padding */
   font-family: 'Abel', sans-serif;
   color: #5e6472;
   border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inset shadow for depth */
 }
 
 .button {
-  width: 100%;
+  width: calc(50% - 10px); /* Adjusted for 2 buttons per row */
   height: 50px;
   padding: 0 20px;
-  margin: 16px 0;
+  margin: 10px 5px; /* Uniform margin */
   border-radius: 5px;
   border: none;
   background: #ff4b2b;
   color: white;
   font-family: 'Abel', sans-serif;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px; /* Slightly larger font size */
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s linear;
+  transition: background-color 0.2s, box-shadow 0.2s; /* Transition for background and shadow */
 }
 
 .button:hover {
-  background-color: #e63e2d;
+  background-color: #e63e2d; /* Darker shade on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Lift effect on hover */
 }
 
 .errorText {
   color: #d32f2f;
-  margin-top: -8px;
-  margin-bottom: 16px;
+  margin-top: -5px; /* Adjusted */
+  margin-bottom: 10px;
   font-family: 'Abel', sans-serif;
 }
 
-/* Hover animation for buttons */
-@keyframes ani9 {
-  0% {
-    transform: translateY(3px);
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Wrap for smaller screens */
+}
+
+.google-sign-up {
+  background-color: #4285f4; /* Google's brand blue */
+  color: white;
+  justify-content: center; /* Center the text and icon */
+  align-items: center;
+  display: flex;
+}
+
+.google-sign-up:hover {
+  background-color: #357ae8; /* Slightly darker on hover */
+}
+
+/* Additional styles for the Google icon */
+.google-icon {
+  width: 24px; /* Set a fixed width for the icon */
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* You can also add media queries if you need to adjust the layout on smaller screens */
+@media (max-width: 768px) {
+  .buttonRow {
+    flex-direction: column;
   }
-  100% {
-    transform: translateY(5px);
+
+  .button {
+    width: 100%; /* Full width buttons on smaller screens */
+    margin: 10px 0; /* Adjusted margin for stacked layout */
   }
 }

@@ -78,11 +78,14 @@ function SignIn() {
     navigate('../SignUp');
   };
 
+  const handleGoogleSignIn = event => {};
+
   return (
     <div className="signInContainer">
       <Typography variant="h4" gutterBottom>
         Log In
       </Typography>
+
       <Typography variant="subtitle1" gutterBottom>
         login here using your email and password
       </Typography>
@@ -101,15 +104,22 @@ function SignIn() {
           Please add valid password.
         </Typography>
       )}
-      <Button onClick={handleLogin} className="button">
-        Log In
-      </Button>
-      <Button onClick={handleForgotPassword} className="button">
-        Forgot Password
-      </Button>
-      <Button onClick={handleCreateAccount} className="button">
-        Sign Up
-      </Button>
+      <div className="buttonRow">
+        <Button onClick={handleLogin} className="button">
+          Log In
+        </Button>
+        <Button onClick={handleGoogleSignIn} className="button google-sign-up">
+          Sign In with Google
+        </Button>
+      </div>
+      <div className="buttonRow">
+        <Button onClick={handleForgotPassword} className="button">
+          Forgot Password
+        </Button>
+        <Button onClick={handleCreateAccount} className="button">
+          Sign Up
+        </Button>
+      </div>
     </div>
   );
 }
