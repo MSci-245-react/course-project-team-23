@@ -1,22 +1,56 @@
-import React from 'react';
+import {React, useState} from 'react';
 import {Typography, Button} from '@mui/material';
 import '../../styling/SignUp.css';
 import {useNavigate} from 'react-router-dom';
-import {auth, googleProvider, signInWithPopup} from '../Firebase/firebase';
+import {
+  auth,
+  googleProvider,
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAdditionalUserInfo,
+} from '../Firebase/firebase';
 
 function SignUp() {
+  const [error, setError] = useState({
+    google: [false, ''],
+  });
   const navigate = useNavigate();
 
-  const handleGoogleSignUp = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      // On successful sign-up, navigate to the Dashboard or another route as needed
-      navigate('../Discover'); // Adjust this route as needed
-    } catch (error) {
-      console.error('Error during Google sign-up:', error);
-      navigate('../SignUp');
-      // Optionally handle errors here, such as displaying an error message to the user
-    }
+  const handleGoogleSignUp = event => {
+    signInWithPopup(auth, googleProvider)
+      .then(result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        const additionalInfo = getAdditionalUserInfo(result);
+        setError({
+          ...error,
+          google: [
+            !additionalInfo.isNewUser,
+            !additionalInfo.isNewUser ? 'Account Already Exists' : '',
+          ],
+        });
+        if (additionalInfo.isNewUser) {
+          console.log('Creating new user');
+          navigate('../Discover');
+        } else {
+          console.log('User already exists');
+        }
+        // ...
+      })
+      .catch(error => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   };
 
   return (
@@ -27,6 +61,9 @@ function SignUp() {
       <Button onClick={handleGoogleSignUp} className="button google-sign-up">
         Sign Up with Google
       </Button>
+      {error.google[0] && (
+        <Typography className="errorText">{error.google[1]}</Typography>
+      )}
       <Typography variant="subtitle1" style={{marginTop: '20px'}}>
         Already have an account?
       </Typography>

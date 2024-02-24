@@ -5,6 +5,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   linkWithCredential,
+  fetchSignInMethodsForEmail,
+  getAdditionalUserInfo,
 } from 'firebase/auth';
 import {getAnalytics} from 'firebase/analytics';
 
@@ -52,4 +54,6 @@ export {
   signInWithPopup,
   GoogleAuthProvider,
   linkWithCredential,
+  fetchSignInMethodsForEmail,
+  getAdditionalUserInfo,
 };
