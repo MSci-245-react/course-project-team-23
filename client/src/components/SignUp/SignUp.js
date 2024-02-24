@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
   getAdditionalUserInfo,
 } from '../Firebase/firebase';
+import GoogleIcon from '@mui/icons-material/Google';
 
 function SignUp() {
   const [error, setError] = useState({
@@ -55,19 +56,37 @@ function SignUp() {
 
   return (
     <div className="signUpContainer">
-      <Typography variant="h4" gutterBottom>
-        Sign Up
+      <Typography variant="h4" className="signUpTitle" gutterBottom>
+        Meal Stream
       </Typography>
-      <Button onClick={handleGoogleSignUp} className="button google-sign-up">
+      <Typography variant="subtitle1" className="signUpSubtitle" gutterBottom>
+        Your Meal Planner Companion
+      </Typography>
+      <Button
+        onClick={handleGoogleSignUp}
+        className="button google-sign-up"
+        variant="contained"
+        style={{
+          backgroundColor: '#ff4b2b',
+          color: 'white',
+          textTransform: 'none',
+        }}
+        startIcon={<GoogleIcon />}
+      >
         Sign Up with Google
       </Button>
       {error.google[0] && (
         <Typography className="errorText">{error.google[1]}</Typography>
       )}
-      <Typography variant="subtitle1" style={{marginTop: '20px'}}>
+      <Typography variant="subtitle1" className="logInPrompt">
         Already have an account?
       </Typography>
-      <Button onClick={() => navigate('../SignIn')} className="button">
+      <Button
+        onClick={() => navigate('../SignIn')}
+        className="button logInButton"
+        variant="contained"
+        style={{backgroundColor: '#4285f4', color: 'white'}}
+      >
         Log In
       </Button>
     </div>

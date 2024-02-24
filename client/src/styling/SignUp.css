@@ -1,80 +1,97 @@
-@import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+/* SignUp.css */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-body,
-html {
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
-  font-family: 'Abel', sans-serif;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .signUpContainer {
-  width: 100%;
-  max-width: 400px;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 50px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  text-align: center;
 }
 
-.typography-h4 {
-  font-size: 2rem;
+.signUpTitle {
+  font-size: 2.5rem;
   color: #333;
-  margin-bottom: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .button {
-  width: 80%; /* Button width relative to the container width */
-  margin: 0.5rem 0; /* Spacing between buttons */
-  padding: 1rem;
+  width: 80%;
+  padding: 15px 0;
+  margin-bottom: 20px;
   border-radius: 5px;
-  background: #4285f4; /* Google's brand color for the Google Sign In button */
-  color: white;
-  text-transform: none; /* Prevents MUI from making the text uppercase */
   font-size: 1rem;
-  font-weight: 400;
-}
-
-.button:not(.google-sign-up) {
-  background: #ff4b2b; /* Your app's button color for other buttons */
-}
-
-.button:hover {
-  opacity: 0.9; /* Slight opacity for hover effect */
-}
-
-.google-sign-up {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.google-sign-up img {
-  margin-right: 10px;
-  width: 24px;
+.google-sign-up {
+  background-color: #ff4b2b; /* Red background */
+  color: white; /* White text */
+}
+
+.google-sign-up:hover {
+  background-color: #e63e2d;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logInPrompt {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.logInButton {
+  background-color: #4285f4; /* Blue background */
+  color: white; /* White text */
+}
+
+.logInButton:hover {
+  background-color: #3367d6;
 }
 
 .errorText {
-  color: #d32f2f;
-  font-size: 0.875rem;
-  margin-top: -5px;
-  margin-bottom: 1rem;
+  color: #ff4b2b;
+  font-size: 0.9rem;
+  margin-top: 10px;
 }
 
-/* Media query for smaller devices */
 @media (max-width: 768px) {
   .signUpContainer {
     margin: 20px;
-    width: auto;
+    padding: 30px;
+    width: calc(100% - 40px);
   }
 
   .button {
-    width: calc(100% - 2rem); /* Full-width minus padding */
+    width: 100%;
   }
 }
