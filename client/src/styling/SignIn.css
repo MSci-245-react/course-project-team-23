@@ -1,106 +1,78 @@
 /* SignIn.css */
 @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
 
+html,
 body {
-  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
-  font-family: 'Abel', sans-serif;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
+  font-family: 'Abel', sans-serif;
 }
 
 .signInContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: 400px; /* Adjusted for better spacing */
+  max-width: 340px;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #fff;
   text-align: center;
 }
 
 .typography-h4 {
-  font-size: 2.5rem; /* Larger for emphasis */
-  color: #333;
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 24px;
-}
-
-.input {
-  background-color: #eee;
-  border: none;
-  padding: 12px 15px; /* Slightly less padding for a neater look */
-  margin: 10px 0; /* Adjusted margin */
-  width: calc(100% - 30px); /* Full width minus padding */
-  font-family: 'Abel', sans-serif;
-  color: #5e6472;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inset shadow for depth */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .button {
-  width: calc(50% - 10px); /* Adjusted for 2 buttons per row */
-  height: 50px;
-  padding: 0 20px;
-  margin: 10px 5px; /* Uniform margin */
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 1rem;
   border-radius: 5px;
-  border: none;
-  background: #ff4b2b;
-  color: white;
-  font-family: 'Abel', sans-serif;
-  font-weight: bold;
-  font-size: 16px; /* Slightly larger font size */
-  cursor: pointer;
-  text-align: center;
-  transition: background-color 0.2s, box-shadow 0.2s; /* Transition for background and shadow */
-}
-
-.button:hover {
-  background-color: #e63e2d; /* Darker shade on hover */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Lift effect on hover */
-}
-
-.errorText {
-  color: #d32f2f;
-  margin-top: -5px; /* Adjusted */
-  margin-bottom: 10px;
-  font-family: 'Abel', sans-serif;
-}
-
-.buttonRow {
+  font-size: 1rem;
+  text-transform: none;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  /* Centering the text and icon within the button */
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap; /* Wrap for smaller screens */
+  justify-content: center;
+  align-items: center;
 }
 
 .google-sign-up {
-  background-color: #4285f4; /* Google's brand blue */
+  background-color: #4285f4;
   color: white;
-  justify-content: center; /* Center the text and icon */
-  align-items: center;
-  display: flex;
+  /* These styles should ensure the button is centered */
+  justify-content: center;
+  width: auto; /* Remove any width constraints */
 }
 
 .google-sign-up:hover {
-  background-color: #357ae8; /* Slightly darker on hover */
+  background-color: #357ae8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Additional styles for the Google icon */
-.google-icon {
-  width: 24px; /* Set a fixed width for the icon */
-  margin-right: 8px; /* Space between icon and text */
+.buttonRow {
+  width: 100%; /* Ensuring the button row takes the full width */
+  display: flex;
+  justify-content: center; /* Centering the buttons in the row */
+  align-items: center;
+  flex-direction: column; /* Stack buttons vertically */
 }
 
-/* You can also add media queries if you need to adjust the layout on smaller screens */
+.subtitle {
+  margin-bottom: 20px;
+}
+
 @media (max-width: 768px) {
-  .buttonRow {
-    flex-direction: column;
-  }
-
-  .button {
-    width: 100%; /* Full width buttons on smaller screens */
-    margin: 10px 0; /* Adjusted margin for stacked layout */
+  .signInContainer {
+    margin: 20px;
+    width: auto;
   }
 }
