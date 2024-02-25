@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
-import {Typography, Button} from '@mui/material';
+import {Typography, Button, IconButton} from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import '../../styling/SignUp.css';
 import {useNavigate} from 'react-router-dom';
 import {
@@ -53,9 +54,18 @@ function SignUp() {
         // ...
       });
   };
+  const handleGoBack = () => {
+    navigate(-1); // Navigate back to the previous landing page
+  };
 
   return (
     <div className="signUpContainer">
+      <IconButton
+        onClick={handleGoBack}
+        style={{position: 'absolute', top: 270, left: 570}}
+      >
+        <ArrowBackIcon />
+      </IconButton>      
       <Typography variant="h4" className="signUpTitle" gutterBottom>
         Meal Stream
       </Typography>
