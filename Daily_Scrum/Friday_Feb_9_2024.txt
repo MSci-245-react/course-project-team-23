@@ -1,1 +1,3 @@
 Jeevan: Created connection to sql database, drew out rough outline of what the user form would look like for user regristration.
+
+Chintan: Found a database with meals and informations about the meals that we can use for the "Discover" meals page. 
