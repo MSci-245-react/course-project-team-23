@@ -1,83 +1,42 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=13356324)
 
-# MSci 342 - Meal Planner
+# Meal Planner Web Application
 
-## To run this app:
+Welcome to **Meal Planner**, a web application designed to help you plan, discover, and organize your meals effortlessly. Our application covers various functionalities aimed at designing personalized recipes that align with your health goals, preferences, and schedule.
 
-- The app starts automatically in dev mode when you open this project in Codespaces. You can stop it by pressing Ctrl+C in the Codespaces terminal, where the app is running. To restart, use the following command from the main project directory:
+## Features
 
-```
-yarn dev
-```
+### Sign Up and Sign In
+- Users can sign up and sign in directly using their Google account.
 
-- make sure you modify `config.js` to point to your MySQL database. The MySQL server name is
+### Plan your Meals
+- Easily plan your meals for the week ahead.
+- Create customized meal plans based on your dietary preferences, nutritional goals, and schedule.
 
-```
-ec2-3-137-65-169.us-east-2.compute.amazonaws.com
-```
+### Discover New Recipes
+- Explore a wide variety of delicious recipes curated for you.
+- By searching ingredients, users can find recipes for every occasion, cuisine, and dietary restriction.
 
-The database name is the same as your UW username.
-The password is "MSCI342".
+### Create a Shopping List
+- Generate a shopping list based on your meal plan.
+- Stay organized and ensure you have all the ingredients you need for your recipes.
 
-## Development Tips:
+### Share and Collaborate
+- Share your meal plans with family and friends.
+- Collaborate on meal ideas and create shared meal plans for special occasions.
 
-- Use CodeSpaces for this project.
-- In VSCode terminal on CodeSpaces start a new branch:
+## Technologies Used
+- **Frontend**: React.js, Material-UI
+- **Backend**: Firebase Authentication, Firebase Realtime Database
+- **Other Tools**: npm, yarn
 
-```
-git checkout -b your-branch-name
-```
+## Getting Started
+1. Clone this repository to your local machine.
+2. Install dependencies using `npm install` or `yarn install`.
+3. Run the application using `npm start` or `yarn start`.
+4. Access the application in your web browser at `http://localhost:3000`.
 
-- As you code, push daily changes to your GitHub repo's `your-branch-name` branch:
 
-```
-git add .
-git commit -m "done feature xyz"
-git push origin your-branch-name
-```
+---
 
-For this project, you will be required to develop a full-stack React/NodeJS application with a MySQL database. To develop the MySQL database, follow the same process as in MSci 245:
-
-1. Open MySQL Workbench on your local machine and connect to
-
-```
-ec2-3-137-65-169.us-east-2.compute.amazonaws.com
-```
-
-with your UW username and password 'MSCI342'.
-
-2. Once you are connected, open a Query window and select your database:
-
-```
-USE YourUserName;
-```
-
-where YourUserName is the same as in Step 1.
-
-3. List all the tables visible to you.
-
-```
-SHOW TABLES;
-```
-
-Tip: Click on the icon highlighted in the figure below to only run the query with the cursor.
-
-![image](/img/screen1.png)
-
-4. You will see the list of tables that are currently in your database.
-
-5. Create new tables required for your project task.
-
-6. Write the React/NodeJS code required for your project task.
-
-7. After you finish your development task, make sure that the app renders in the browser and functions according to the specifications.
-
-8. Push changes to the GitHub:
-
-```
-git add .
-git commit -m "meaningful message indicating what changes were made"
-git push origin your-branch-name
-```
-
-9. In your GitHub repo, create new pull request. Ensure that other team members review and approve the changes. After that, merge `your-branch-name` branch with the `main` branch.
+Thank you for choosing **Meal Planner**. We hope you enjoy using our application to simplify your meal planning process!
