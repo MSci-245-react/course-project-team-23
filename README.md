@@ -33,8 +33,9 @@ Welcome to **Meal Planner**, a web application designed to help you plan, discov
 ## Getting Started
 1. Clone this repository to your local machine.
 2. Install dependencies using `npm install` or `yarn install`.
-3. Run the application using `npm start` or `yarn start`.
-4. Access the application in your web browser at `http://localhost:3000`.
+3. `Yarn server` to connect to SQL
+4. Run the application, `cd client` and then `yarn start`.
+5. Access the application in your web browser at `http://localhost:3000`.
 
 
 ---
