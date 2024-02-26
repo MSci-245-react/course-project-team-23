@@ -3,13 +3,7 @@ import {Typography, Button, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import '../../styling/SignUp.css';
 import {useNavigate} from 'react-router-dom';
-import {
-  auth,
-  googleProvider,
-  signInWithPopup,
-  GoogleAuthProvider,
-  getAdditionalUserInfo,
-} from '../Firebase/firebase';
+import Firebase from '../Firebase';
 import GoogleIcon from '@mui/icons-material/Google';
 
 function SignUp() {
@@ -17,45 +11,60 @@ function SignUp() {
     google: [false, ''],
   });
   const navigate = useNavigate();
+  const serverURL = '';
 
   const handleGoogleSignUp = event => {
-    signInWithPopup(auth, googleProvider)
-      .then(result => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        const additionalInfo = getAdditionalUserInfo(result);
-        setError({
-          ...error,
-          google: [
-            !additionalInfo.isNewUser,
-            !additionalInfo.isNewUser ? 'Account Already Exists' : '',
-          ],
-        });
-        if (additionalInfo.isNewUser) {
-          console.log('Creating new user');
-          navigate('../Discover');
-        } else {
-          console.log('User already exists');
-        }
-        // ...
+    Firebase.signUpOrInWithPopupGoogle('SignUp')
+      .then(({userExists, user}) => {
+        console.log(user);
+        console.log('User Created');
+        addUserToDatabase(user);
+        navigate('../UserInfo');
       })
       .catch(error => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        setError(prevError => ({
+          ...prevError,
+          google: [true, error.message],
+        }));
       });
   };
   const handleGoBack = () => {
     navigate(-1); // Navigate back to the previous landing page
+  };
+
+  const addUserToDatabase = user => {
+    callApiAddUserToDatabase(user);
+  };
+
+  const callApiAddUserToDatabase = async user => {
+    const url = serverURL + '/api/addUser';
+    console.log(url);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      name: user.displayName,
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseBody = await response.json();
+
+      if (response.status !== 200) {
+        throw new Error(responseBody.message);
+      }
+
+      console.log('Review sent: ', responseBody);
+      return responseBody;
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
 
   return (

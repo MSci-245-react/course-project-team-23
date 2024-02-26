@@ -3,14 +3,7 @@ import {Typography, Button, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import '../../styling/SignIn.css';
 import {useNavigate} from 'react-router-dom';
-import {
-  auth,
-  googleProvider,
-  signInWithPopup,
-  GoogleAuthProvider,
-  fetchSignInMethodsForEmail,
-  getAdditionalUserInfo,
-} from '../Firebase/firebase';
+import Firebase from '../Firebase';
 import GoogleIcon from '@mui/icons-material/Google';
 
 function SignIn() {
@@ -20,39 +13,16 @@ function SignIn() {
   const navigate = useNavigate();
 
   const handleGoogleSignIn = event => {
-    signInWithPopup(auth, googleProvider)
-      .then(result => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        const additionalInfo = getAdditionalUserInfo(result);
-        setError({
-          ...error,
-          google: [
-            additionalInfo.isNewUser,
-            additionalInfo.isNewUser ? 'Could Not Find Account' : '',
-          ],
-        });
-        if (!additionalInfo.isNewUser) {
-          console.log('Found User');
-          navigate('../Discover');
-        } else {
-          console.log('Could not find user');
-        }
-        // ...
+    Firebase.signUpOrInWithPopupGoogle('SignIn')
+      .then(({userExists, user}) => {
+        console.log('User Found');
+        navigate('../Discover');
       })
       .catch(error => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        setError(prevError => ({
+          ...prevError,
+          google: [true, error.message],
+        }));
       });
   };
   const handleGoBack = () => {
