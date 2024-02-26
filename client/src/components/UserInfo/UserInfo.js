@@ -31,28 +31,6 @@ const UserInfo = () => {
     }));
   };
 
-  // const loadUserInfo = async () => {
-  //   const url = serverURL + '/api/loadUserInfo';
-  //   const response = await fetch(url, {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify({uid: curUserID}),
-  //   });
-  //   const userData = await response.json();
-  //   if (userData && userData.length > 0) {
-  //     const user = userData[0];
-  //     const loadedFormData = {
-  //       name: user.name,
-  //       email: user.email,
-  //       weight: user.weight,
-  //       goals: user.goals,
-  //       UID: curUserID,
-  //     };
-  //     setFormData(loadedFormData);
-  //     setInitialFormData(loadedFormData); // Save initial form data
-  //   }
-  // };
-
   const loadUserInfo = () => {
     callApiLoadUserInfo().then(res => {
       console.log('callApiLoadUserInfo response: ', res);
@@ -92,19 +70,6 @@ const UserInfo = () => {
   useEffect(() => {
     loadUserInfo();
   }, [curUserID]);
-
-  // const updateUserInfo = async formData => {
-  //   const response = await fetch(`${serverURL}/api/updateUserInfo`, {
-  //     method: 'POST',
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: JSON.stringify(formData),
-  //   });
-  //   if (response.ok) {
-  //     console.log('User information updated successfully.');
-  //   } else {
-  //     console.error('Failed to update user information.');
-  //   }
-  // };
 
   const updateUserInfo = formData => {
     callApiUpdateUserInfo(formData).then(res => {
