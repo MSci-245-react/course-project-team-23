@@ -19,13 +19,13 @@ describe('empty spec', () => {
     //cy.go('back');
     //cy.go('back');
     cy.contains('Get Started').click();
-    cy.url().should('include', '/Discover')
+    cy.url().should('include', '/Plan')
   });
 
   it('Test discoverAllRecipes Links to recipes Page', () => {
     cy.go('back');
     cy.contains('Explore Recipes').click();
-    cy.url().should('include', '/Recipes')
+    cy.url().should('include', '/Discover')
   });
 
   it('Test CreateAShoppingList Links to discover Page', () => {
