@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {FirebaseContext} from '../Firebase';
 import {TextField, Button, Typography, Box} from '@mui/material';
 import NameBox from './NameBox';
@@ -10,18 +10,17 @@ import '../../styling/UserInfo.css';
 
 const UserInfo = () => {
   const firebase = useContext(FirebaseContext);
-  const user = firebase.auth.currentUser;
-  const serverURL = '';
+  const curUserID = firebase.auth.currentUser.uid;
+  const serverURL = ''; // Define your server URL here
 
+  const [initialFormData, setInitialFormData] = useState({});
   const [formData, setFormData] = useState({
-    name: user ? user.displayName : '',
-    email: user ? user.email : '',
-    age: '',
+    name: '',
+    email: '',
     weight: '',
     goals: '',
-    uid: user ? user.uid : '',
+    UID: curUserID,
   });
-
   const [isEditable, setIsEditable] = useState(false);
 
   const handleChange = event => {
@@ -32,42 +31,80 @@ const UserInfo = () => {
     }));
   };
 
+  // const loadUserInfo = async () => {
+  //   const url = serverURL + '/api/loadUserInfo';
+  //   const response = await fetch(url, {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify({uid: curUserID}),
+  //   });
+  //   const userData = await response.json();
+  //   if (userData && userData.length > 0) {
+  //     const user = userData[0];
+  //     const loadedFormData = {
+  //       name: user.name,
+  //       email: user.email,
+  //       weight: user.weight,
+  //       goals: user.goals,
+  //       UID: curUserID,
+  //     };
+  //     setFormData(loadedFormData);
+  //     setInitialFormData(loadedFormData); // Save initial form data
+  //   }
+  // };
+
   const loadUserInfo = () => {
     callApiLoadUserInfo().then(res => {
       console.log('callApiLoadUserInfo response: ', res);
-      var parsed = JSON.parse(res.express);
-      console.log('callApiLoadUserInfo parse:', parsed);
-      setFormData({
-        name: parsed.name,
-        email: parsed.email,
-        age: parsed.age,
-        weight: parsed.weight,
-        goals: parsed.goals,
-        uid: parsed.uid,
-      });
+      //var parsed = JSON.parse(res.express);
+      console.log('callApiLoadUserInfo parse:', res[0]);
+      var user = res[0];
+      const loadedFormData = {
+        name: user.name,
+        email: user.email,
+        weight: user.weight,
+        goals: user.goals,
+        UID: curUserID,
+      };
+      setFormData(loadedFormData);
+      setInitialFormData(loadedFormData);
     });
   };
 
   const callApiLoadUserInfo = async () => {
-    const url = serverURL + '/loadUserInfo';
-    //console.log('User UID: ', user.uid);
+    const url = serverURL + '/api/loadUserInfo';
+    console.log('Sending to the api User ID: ', curUserID);
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
 
-      body: JSON.stringify(user.uid),
+      body: JSON.stringify({uid: curUserID}),
     });
+    //console.log('Response: ', response);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
     console.log('User settings: ', body);
     return body;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     loadUserInfo();
-  }, []);
+  }, [curUserID]);
+
+  // const updateUserInfo = async formData => {
+  //   const response = await fetch(`${serverURL}/api/updateUserInfo`, {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: JSON.stringify(formData),
+  //   });
+  //   if (response.ok) {
+  //     console.log('User information updated successfully.');
+  //   } else {
+  //     console.error('Failed to update user information.');
+  //   }
+  // };
 
   const updateUserInfo = formData => {
     callApiUpdateUserInfo(formData).then(res => {
@@ -76,7 +113,8 @@ const UserInfo = () => {
   };
 
   const callApiUpdateUserInfo = async formData => {
-    const url = serverURL + '/updateUserInfo';
+    const url = serverURL + '/api/updateUserInfo';
+    console.log('Sending to the api Form Data: ', formData);
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -91,14 +129,18 @@ const UserInfo = () => {
   };
 
   const handleSubmit = event => {
-    console.log('Form data:', formData);
+    event.preventDefault();
+    //updateUserInfo(formData);
+    setIsEditable(false); // Exit edit mode after submission
+    setInitialFormData(formData); // Update initialFormData with the newly submitted data
     updateUserInfo(formData);
-    // You would typically handle the form submission here,
-    // for example, sending the data to your database
   };
 
-  const handleEdit = () => {
-    setIsEditable(prev => !prev);
+  const handleEdit = () => setIsEditable(true);
+
+  const handleCancel = () => {
+    setFormData(initialFormData); // Reset to initial form data
+    setIsEditable(false); // Exit edit mode
   };
 
   return (
@@ -110,10 +152,13 @@ const UserInfo = () => {
       className="userInfoForm"
     >
       <Typography variant="h6">User Information</Typography>
-      <NameBox name={formData.name} />
-      <EmailBox email={formData.email} />
-      <AgeBox
-        age={formData.age}
+      <NameBox
+        name={formData.name}
+        handleChange={handleChange}
+        isEditable={isEditable}
+      />
+      <EmailBox
+        email={formData.email}
         handleChange={handleChange}
         isEditable={isEditable}
       />
@@ -130,13 +175,15 @@ const UserInfo = () => {
       <Box
         sx={{display: 'flex', justifyContent: 'space-between', mt: 3, mb: 2}}
       >
-        <Button
-          onClick={handleEdit}
-          variant="outlined"
-          sx={{mr: 1}} // Add right margin to separate the buttons
-        >
-          {isEditable ? 'Cancel' : 'Edit'}
-        </Button>
+        {isEditable ? (
+          <Button onClick={handleCancel} variant="outlined">
+            Cancel
+          </Button>
+        ) : (
+          <Button onClick={handleEdit} variant="outlined">
+            Edit
+          </Button>
+        )}
         <Button type="submit" variant="contained" disabled={!isEditable}>
           Submit
         </Button>
