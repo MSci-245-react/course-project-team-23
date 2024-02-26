@@ -1,0 +1,93 @@
+/* UserInfo.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.userInfoForm {
+  width: calc(100% - 40px); /* Use the full width minus some padding */
+  max-width: 800px; /* Increase max-width for a wider form */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.userInfoForm h6 {
+  color: #333;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.userInfoForm .MuiTextField-root {
+  margin-bottom: 20px;
+}
+
+.userInfoForm .MuiButtonBase-root {
+  margin-top: 20px;
+}
+
+.userInfoForm .MuiOutlinedInput-notchedOutline {
+  border-color: #9b59b6;
+}
+
+.userInfoForm .MuiButton-outlined {
+  border-color: #9b59b6;
+  color: #9b59b6;
+}
+
+.userInfoForm .MuiButton-contained {
+  background-color: #9b59b6;
+  color: white;
+}
+
+.userInfoForm .MuiButton-contained:hover {
+  background-color: #824c9e;
+}
+
+.userInfoForm .Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Adjust multiline TextField to a smaller height */
+.userInfoForm .MuiInputBase-inputMultiline {
+  height: auto;
+  min-height: 80px; /* Reduced min-height */
+}
+
+/* Ensure the input fields take the full width of the form */
+.userInfoForm .MuiTextField-root {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .userInfoForm {
+    width: calc(100% - 20px); /* Adjust for smaller screens */
+    padding: 10px; /* Smaller padding on smaller screens */
+  }
+
+  /* Ensure the form is not too wide on smaller screens */
+  .userInfoForm .MuiTextField-root,
+  .userInfoForm .MuiButtonBase-root {
+    width: 100%;
+  }
+}
