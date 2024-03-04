@@ -1,6 +1,14 @@
 Jeevan:
 
-Giselle:
+Gisele:
+What did you do since last sprint?
+Re-factored code for sprint 1 funcitonalities
+
+What did you do today?
+Planned user stories for the next sprint, and divided the stories among members for completion of sprint 2.
+
+Anything in blocking progess?
+Midterms.
 
 Chintan:
 What did you do since last sprint?
