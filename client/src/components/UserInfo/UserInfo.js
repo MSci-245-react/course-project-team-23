@@ -10,8 +10,15 @@ import '../../styling/UserInfo.css';
 
 const UserInfo = () => {
   const firebase = useContext(FirebaseContext);
-  const curUserID = firebase.auth.currentUser.uid;
+  //var curUserID = firebase.userID; // Replace with the current user's ID
+  const [curUserID, setCurUserID] = useState(firebase.userID); // Replace with the current user's ID
   const serverURL = ''; // Define your server URL here
+
+  useEffect(() => {
+    console.log('user refreshed the page');
+    setCurUserID(firebase.userID);
+    //curUserID = firebase.userID;
+  }, []);
 
   const [initialFormData, setInitialFormData] = useState({});
   const [formData, setFormData] = useState({

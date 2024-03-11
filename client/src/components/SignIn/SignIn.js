@@ -25,18 +25,18 @@ function SignIn() {
         }));
       });
   };
-  const handleGoBack = () => {
-    navigate(-1); // Navigate back to the previous landing page
-  };
+  // const handleGoBack = () => {
+  //   navigate(-1); // Navigate back to the previous landing page
+  // };
 
   return (
     <div className="signInContainer">
-      <IconButton
+      {/* <IconButton
         onClick={handleGoBack}
         style={{position: 'absolute', top: 280, left: 550}}
       >
         <ArrowBackIcon />
-      </IconButton>
+      </IconButton> */}
       <Typography variant="h4" className="loginTitle" gutterBottom>
         Meal Stream
       </Typography>

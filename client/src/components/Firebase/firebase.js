@@ -8,6 +8,7 @@ import {
   fetchSignInMethodsForEmail,
   getAdditionalUserInfo,
   deleteUser,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import {getAnalytics} from 'firebase/analytics';
 
@@ -38,6 +39,10 @@ class Firebase {
     this.auth = getAuth(this.app);
     this.analytics = getAnalytics(this.app);
     this.googleProvider = new GoogleAuthProvider();
+    this.userName = null;
+    this.userID = null;
+    this.userEmail = null;
+    this.user = null;
   }
 
   signUpOrInWithPopupGoogle = method => {
@@ -61,6 +66,11 @@ class Firebase {
               method === 'SignUp' ? 'Signing up user' : 'Signing in user',
             );
             // Resolve with user data and existence flag
+            this.userID = result.user.uid;
+            this.userName = result.user.displayName;
+            this.userEmail = result.user.email;
+            this.user = result.user;
+            //this.setIDLocalStorage(this.userID);
             resolve({user: result.user, userExists});
           }
         })
