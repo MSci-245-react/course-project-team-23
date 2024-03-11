@@ -99,6 +99,14 @@ const PlanningPage = () => {
           <Button variant="h6" component={Link} to="/UserInfo" color="inherit">
             Your Info
           </Button>
+          <Button
+            variant="h6"
+            component={Link}
+            to="/Recommendations"
+            color="inherit"
+          >
+            Recommendations
+          </Button>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" style={{marginTop: '2rem'}}>
