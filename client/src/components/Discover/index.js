@@ -1,5 +1,3 @@
-// PlanningPage.js
-
 import React, {useState, useEffect} from 'react';
 import {
   AppBar,
@@ -22,6 +20,7 @@ import {
 } from '@mui/material';
 import {Link} from 'react-router-dom';
 import RatingForm from './RatingForm'; // Import the rating form component
+import NavBar from '../Navigation/NavBar';
 
 const PlanningPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -80,41 +79,24 @@ const PlanningPage = () => {
 
   return (
     <div>
-      <AppBar position="static" style={{backgroundColor: '#4caf50'}}>
-        <Toolbar>
-          <Button variant="h6" component={Link} to="/" color="inherit">
-            Landing
-          </Button>
-          <Button variant="h6" component={Link} to="/Recipes" color="inherit">
-            Discover Recipes
-          </Button>
-          <Button
-            variant="h6"
-            component={Link}
-            to="/ShoppingList"
-            color="inherit"
-          >
-            Shopping List
-          </Button>
-          <Button variant="h6" component={Link} to="/UserInfo" color="inherit">
-            Your Info
-          </Button>
-          <Button
-            variant="h6"
-            component={Link}
-            to="/Recommendations"
-            color="inherit"
-          >
-            Recommendations
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <Container maxWidth="md" style={{marginTop: '2rem'}}>
-        <Typography variant="h4" gutterBottom>
+      <NavBar />
+      <Container maxWidth="md" sx={{marginTop: '2rem', marginBottom: '2rem'}}>
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{fontWeight: 'bold', marginBottom: '1rem'}}
+        >
           Plan Your Meals
         </Typography>
-        <Box sx={{bgcolor: '#f5f5f5', p: 3, borderRadius: 8}}>
-          <Grid container spacing={3} alignItems="center">
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            p: 3,
+            borderRadius: 2,
+            boxShadow: 3,
+          }}
+        >
+          <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} md={8}>
               <TextField
                 fullWidth
@@ -122,6 +104,15 @@ const PlanningPage = () => {
                 variant="outlined"
                 value={searchQuery}
                 onChange={handleSearchChange}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '20px',
+                    backgroundColor: '#fff',
+                  },
+                  '& .MuiInputLabel-root': {
+                    color: 'text.primary',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -130,7 +121,13 @@ const PlanningPage = () => {
                 variant="contained"
                 color="primary"
                 onClick={handleSearchSubmit}
-                sx={{height: '100%'}}
+                sx={{
+                  height: '100%',
+                  borderRadius: '20px',
+                  boxShadow: 'none',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                }}
               >
                 Search
               </Button>
@@ -138,24 +135,40 @@ const PlanningPage = () => {
             <Grid item xs={12}>
               <Paper
                 elevation={3}
-                sx={{bgcolor: '#ffffff', borderRadius: 8, p: 2}}
+                sx={{
+                  bgcolor: '#ffffff',
+                  borderRadius: 2,
+                  p: 2,
+                  minHeight: '150px', // Adjust based on content
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
               >
                 {searchResults.length > 0 ? (
                   <>
-                    <Typography variant="h5" gutterBottom>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{fontWeight: 'bold'}}
+                    >
                       Search Results
                     </Typography>
-                    <List>
+                    <List sx={{width: '100%'}}>
                       {searchResults.map((result, index) => (
                         <ListItem
                           key={index}
                           divider
                           button
                           onClick={() => handleOpenRatingForm(result)}
+                          sx={{'&:hover': {bgcolor: 'action.hover'}}}
                         >
                           <ListItemText
                             primary={result['Food Product']}
                             secondary={`Main Ingredient: ${result['Main Ingredient']}`}
+                            primaryTypographyProps={{fontWeight: 'medium'}}
+                            secondaryTypographyProps={{color: 'text.secondary'}}
                           />
                           <Rating
                             name={`rating-${index}`}
@@ -167,7 +180,7 @@ const PlanningPage = () => {
                     </List>
                   </>
                 ) : (
-                  <Typography variant="body1">
+                  <Typography variant="body1" sx={{color: 'text.secondary'}}>
                     No search results yet.
                   </Typography>
                 )}
@@ -176,7 +189,6 @@ const PlanningPage = () => {
           </Grid>
         </Box>
       </Container>
-
       {/* Rating Form Dialog */}
       <Dialog open={openRatingForm} onClose={handleCloseRatingForm}>
         <DialogTitle>
