@@ -5,7 +5,7 @@ import NameBox from './NameBox';
 import EmailBox from './EmailBox';
 import GoalBox from './GoalBox';
 import WeightBox from './WeightBox';
-import AgeBox from './AgeBox';
+import NavBar from '../Navigation/NavBar';
 import '../../styling/UserInfo.css';
 
 const UserInfo = () => {
@@ -116,51 +116,54 @@ const UserInfo = () => {
   };
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      noValidate
-      sx={{mt: 1}}
-      className="userInfoForm"
-    >
-      <Typography variant="h6">User Information</Typography>
-      <NameBox
-        name={formData.name}
-        handleChange={handleChange}
-        isEditable={isEditable}
-      />
-      <EmailBox
-        email={formData.email}
-        handleChange={handleChange}
-        isEditable={isEditable}
-      />
-      <WeightBox
-        weight={formData.weight}
-        handleChange={handleChange}
-        isEditable={isEditable}
-      />
-      <GoalBox
-        goals={formData.goals}
-        handleChange={handleChange}
-        isEditable={isEditable}
-      />
+    <>
+      <NavBar />
       <Box
-        sx={{display: 'flex', justifyContent: 'space-between', mt: 3, mb: 2}}
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{mt: 1}}
+        className="userInfoForm"
       >
-        {isEditable ? (
-          <Button onClick={handleCancel} variant="outlined">
-            Cancel
+        <Typography variant="h6">User Information</Typography>
+        <NameBox
+          name={formData.name}
+          handleChange={handleChange}
+          isEditable={isEditable}
+        />
+        <EmailBox
+          email={formData.email}
+          handleChange={handleChange}
+          isEditable={isEditable}
+        />
+        <WeightBox
+          weight={formData.weight}
+          handleChange={handleChange}
+          isEditable={isEditable}
+        />
+        <GoalBox
+          goals={formData.goals}
+          handleChange={handleChange}
+          isEditable={isEditable}
+        />
+        <Box
+          sx={{display: 'flex', justifyContent: 'space-between', mt: 3, mb: 2}}
+        >
+          {isEditable ? (
+            <Button onClick={handleCancel} variant="outlined">
+              Cancel
+            </Button>
+          ) : (
+            <Button onClick={handleEdit} variant="outlined">
+              Edit
+            </Button>
+          )}
+          <Button type="submit" variant="contained" disabled={!isEditable}>
+            Submit
           </Button>
-        ) : (
-          <Button onClick={handleEdit} variant="outlined">
-            Edit
-          </Button>
-        )}
-        <Button type="submit" variant="contained" disabled={!isEditable}>
-          Submit
-        </Button>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 
