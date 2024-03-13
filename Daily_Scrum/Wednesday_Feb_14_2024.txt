@@ -1,1 +1,3 @@
 Jeevan: Started to integrate Sign-In page into web app and integrated routes into the project. Looked into Firebase integration
+
+Chintan: Started work on the "Discover" page, trying to implement search and rating functionality. Adding the landing page as well.

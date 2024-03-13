@@ -28,9 +28,9 @@ function SignUp() {
         }));
       });
   };
-  const handleGoBack = () => {
-    navigate(-1); // Navigate back to the previous landing page
-  };
+  // const handleGoBack = () => {
+  //   navigate(-1); // Navigate back to the previous landing page
+  // };
 
   const addUserToDatabase = user => {
     callApiAddUserToDatabase(user);
@@ -69,12 +69,12 @@ function SignUp() {
 
   return (
     <div className="signUpContainer">
-      <IconButton
+      {/* <IconButton
         onClick={handleGoBack}
         style={{position: 'absolute', top: 270, left: 570}}
       >
         <ArrowBackIcon />
-      </IconButton>      
+      </IconButton>       */}
       <Typography variant="h4" className="signUpTitle" gutterBottom>
         Meal Stream
       </Typography>
