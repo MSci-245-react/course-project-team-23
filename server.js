@@ -178,7 +178,9 @@ app.post("/api/recommendations", (req, res) => {
       return res.status(500).send({ error: error.message });
     }
     res.json(results);
-    
+  });
+});
+
 app.get("/api/topRatedMeals", (req, res) => {
   const sql = "SELECT * FROM c4desai.ratings ORDER BY rating";
 
@@ -192,54 +194,63 @@ app.get("/api/topRatedMeals", (req, res) => {
   });
 });
 
-app.get('/api/meals/filter', (req, res) => {
-  const { prepTimeMin, prepTimeMax, caloriesMin, caloriesMax, carbsMin, carbsMax, fatsMin, fatsMax } = req.query;
-  let sql = 'SELECT * FROM food_ingredients_and_allergens WHERE 1';
+app.get("/api/meals/filter", (req, res) => {
+  const {
+    prepTimeMin,
+    prepTimeMax,
+    caloriesMin,
+    caloriesMax,
+    carbsMin,
+    carbsMax,
+    fatsMin,
+    fatsMax,
+  } = req.query;
+  let sql = "SELECT * FROM food_ingredients_and_allergens WHERE 1";
   const params = [];
 
   if (prepTimeMin) {
-    sql += ' AND `Prep Time` >= ?';
+    sql += " AND `Prep Time` >= ?";
     params.push(prepTimeMin);
   }
 
   if (prepTimeMax) {
-    sql += ' AND `Prep Time` <= ?';
+    sql += " AND `Prep Time` <= ?";
     params.push(prepTimeMax);
   }
 
   if (caloriesMin) {
-    sql += ' AND Calories >= ?';
+    sql += " AND Calories >= ?";
     params.push(caloriesMin);
   }
 
   if (caloriesMax) {
-    sql += ' AND Calories <= ?';
+    sql += " AND Calories <= ?";
     params.push(caloriesMax);
   }
 
   if (carbsMin) {
-    sql += ' AND Carbs >= ?';
+    sql += " AND Carbs >= ?";
     params.push(carbsMin);
   }
 
   if (carbsMax) {
-    sql += ' AND Carbs <= ?';
+    sql += " AND Carbs <= ?";
     params.push(carbsMax);
   }
 
   if (fatsMin) {
-    sql += ' AND Fats >= ?';
+    sql += " AND Fats >= ?";
     params.push(fatsMin);
   }
 
   if (fatsMax) {
-    sql += ' AND Fats <= ?';
+    sql += " AND Fats <= ?";
     params.push(fatsMax);
   }
 
   pool.query(sql, params, (error, results) => {
     if (error) {
-      console.error('Error querying database:', error);
+      console.error("Error querying database:", error);
       res.status(500).json({ error: error.message });
     } else {
       res.json(results);
