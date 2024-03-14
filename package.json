@@ -8,6 +8,7 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "@mui/styles": "^5.15.13",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -17,6 +18,7 @@
     "mysql": "^2.18.1",
     "node-fetch": "^3.3.1",
     "nodemon": "^2.0.22",
+    "react-select": "^5.8.0",
     "recompose": "^0.30.0",
     "yarn": "^1.22.19"
   },
