@@ -12,6 +12,7 @@ import SignUp from '../SignUp';
 import PasswordForget from '../PasswordForget';
 import UserInfo from '../UserInfo';
 import Recommendations from '../Recommendations';
+import Plan from '../Plan'
 import {withFirebase} from '../Firebase';
 
 // Optionally, you can create a ProtectedRoute component
@@ -47,6 +48,7 @@ const App = props => {
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/PasswordForget" element={<PasswordForget />} />
           <Route path="/Recommendations" element={<Recommendations />} />
+
           {/* Protected Routes */}
           <Route
             path="/Discover"

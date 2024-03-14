@@ -24,6 +24,7 @@ const Recommendations = () => {
   const matches = useMediaQuery(theme.breakpoints.up('md'));
   const firebase = useContext(FirebaseContext);
   const [curUserID, setCurUserID] = useState(firebase.userID);
+  const [preference, setPreference] = useState(true);
 
   // States for user input and available options
   const [userInput, setUserInput] = useState({
@@ -58,6 +59,11 @@ const Recommendations = () => {
 
   const handleSubmit = () => {
     console.log('User Preferences:', userInput);
+    if(preference){
+      setPreference(false);
+    }else{
+      setPreference(true);
+    }
     // Submit preferences to backend
   };
 
@@ -66,83 +72,92 @@ const Recommendations = () => {
       <NavBar />
       <Container maxWidth="sm">
         <Paper elevation={3} sx={{my: 4, p: 3}}>
-          <Typography
-            variant="h4"
-            gutterBottom
-            align="center"
-            color={theme.palette.primary.main}
-          >
-            Select Your Preferences
-          </Typography>
-          <Box mb={3}>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Allergies</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <AllergiesCheckBox
-                  allergies={allAllergies}
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                />
-              </AccordionDetails>
-            </Accordion>
 
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel2a-content"
-                id="panel2a-header"
-              >
-                <Typography>Diets</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <DietCheckBox
-                  diets={allDiets}
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                />
-              </AccordionDetails>
-            </Accordion>
+          {preference ?(
 
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel3a-content"
-                id="panel3a-header"
-              >
-                <Typography>Ingredients</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <IngredientsCheckBox
-                  ingredients={allIngredients}
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                />
-              </AccordionDetails>
-            </Accordion>
+          <div>  
+            <Typography
+              variant="h4"
+              gutterBottom
+              align="center"
+              color={theme.palette.primary.main}
+            >
+              Select Your Preferences
+            </Typography>
+            <Box mb={3}>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>Allergies</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <AllergiesCheckBox
+                    allergies={allAllergies}
+                    userInput={userInput}
+                    setUserInput={setUserInput}
+                  />
+                </AccordionDetails>
+              </Accordion>
 
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel4a-content"
-                id="panel4a-header"
-              >
-                <Typography>Food Items</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <FoodCheckBox
-                  foodItems={allFoodItems}
-                  userInput={userInput}
-                  setUserInput={setUserInput}
-                />
-              </AccordionDetails>
-            </Accordion>
-          </Box>
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel2a-content"
+                  id="panel2a-header"
+                >
+                  <Typography>Diets</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <DietCheckBox
+                    diets={allDiets}
+                    userInput={userInput}
+                    setUserInput={setUserInput}
+                  />
+                </AccordionDetails>
+              </Accordion>
+
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel3a-content"
+                  id="panel3a-header"
+                >
+                  <Typography>Ingredients</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <IngredientsCheckBox
+                    ingredients={allIngredients}
+                    userInput={userInput}
+                    setUserInput={setUserInput}
+                  />
+                </AccordionDetails>
+              </Accordion>
+
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel4a-content"
+                  id="panel4a-header"
+                >
+                  <Typography>Food Items</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <FoodCheckBox
+                    foodItems={allFoodItems}
+                    userInput={userInput}
+                    setUserInput={setUserInput}
+                  />
+                </AccordionDetails>
+              </Accordion>
+            </Box>   
+          </div>           
+        ):(
+          <p>test</p>
+        )}
+
 
           <Button
             onClick={handleSubmit}

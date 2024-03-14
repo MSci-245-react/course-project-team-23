@@ -64,7 +64,7 @@ const Landing = () => {
             <Button
               variant="contained"
               component={Link}
-              to="/Plan"
+              to="/Recommendations"
               color="primary"
               style={{marginTop: '1rem'}}
             >
