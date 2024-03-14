@@ -25,6 +25,7 @@ const Recommendations = () => {
   //const matches = useMediaQuery(theme.breakpoints.up('md'));
   const firebase = useContext(FirebaseContext);
   const [curUserID, setCurUserID] = useState(firebase.userID);
+  const [preference, setPreference] = useState(true);
 
   const serverURL = '';
 
@@ -123,6 +124,7 @@ const Recommendations = () => {
 
   const handleSubmit = () => {
     console.log('User Preferences:', userInput);
+
     const isUserInputEmpty = Object.values(userInput).every(value =>
       Array.isArray(value) ? value.length === 0 : !value,
     );

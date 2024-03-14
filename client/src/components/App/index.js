@@ -12,6 +12,7 @@ import SignUp from '../SignUp';
 import PasswordForget from '../PasswordForget';
 import UserInfo from '../UserInfo';
 import Recommendations from '../Recommendations';
+import Plan from '../Plan'
 import {withFirebase} from '../Firebase';
 import FilterPage from '../FilterPage';
 
