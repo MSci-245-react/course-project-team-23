@@ -21,6 +21,7 @@ import {
 import {Link} from 'react-router-dom';
 import RatingForm from './RatingForm'; // Import the rating form component
 import NavBar from '../Navigation/NavBar';
+import TopRatedMeals from './TopRatedMeals'; // Import the top-rated meals component
 
 const PlanningPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,7 +51,8 @@ const PlanningPage = () => {
   };
 
   // Function to handle search submission
-  const handleSearchSubmit = () => {
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
     // Filter food ingredients based on search query
     const results = allFoodIngredients.filter(
       ingredient =>
@@ -140,10 +142,12 @@ const PlanningPage = () => {
                   borderRadius: 2,
                   p: 2,
                   minHeight: '150px', // Adjust based on content
+                  maxHeight: '400px',
+                  overflowY: 'auto',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-start',
                 }}
               >
                 {searchResults.length > 0 ? (
@@ -188,6 +192,20 @@ const PlanningPage = () => {
             </Grid>
           </Grid>
         </Box>
+      </Container>
+      <Container maxWidth="md" sx={{ marginTop: '2rem', marginBottom: '2rem' }}>
+        {/* Other components and JSX */}
+        <Paper
+          elevation={3}
+          sx={{
+            bgcolor: '#ffffff',
+            borderRadius: 2,
+            p: 2,
+            marginBottom: '2rem',
+          }}
+        >
+          <TopRatedMeals meals={allFoodIngredients} /> {/* Render TopMeals component */}
+        </Paper>
       </Container>
       {/* Rating Form Dialog */}
       <Dialog open={openRatingForm} onClose={handleCloseRatingForm}>

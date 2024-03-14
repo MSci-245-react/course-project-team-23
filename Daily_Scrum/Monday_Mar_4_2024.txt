@@ -1,0 +1,27 @@
+Jeevan:
+What have you done since the last sprint?
+Re-factored code for sprint 1 functionalities. This includes adding styling and checks balancing.
+
+Is anything blocking progress?
+Midterms and time.
+
+Gisele:
+What did you do since last sprint?
+Re-factored code for sprint 1 funcitonalities
+
+What did you do today?
+Planned user stories for the next sprint, and divided the stories among members for completion of sprint 2.
+
+Anything in blocking progess?
+Midterms.
+
+Chintan:
+What did you do since last sprint?
+Re-factored code for sprint 1 funcitonalities
+
+What did you do today?
+Planned user stories for the next sprint, and divided the stories among members for completion of sprint 2.
+
+Anything in blocking progess?
+Midterms.
+

@@ -1,0 +1,21 @@
+Chintan:
+
+What did you do yesterday?
+Worked on updating the database to capture all of our requirements. Added information about calories, carbs, fats, proteins, prep time, equipment, and diet category for 400 meals. Fixed search functionality.
+
+What will you do today?
+I will work on implementing all functionality that is not dependent on our chatbot and work to finish the "Discover" page completely.
+
+Is there anything in your way?
+There was one issue with database connectivity, but it was resolved today.
+
+Jeevan:
+
+What did you do yesterday?
+Made integration of Firebase more robust. Handles edge cases now. 50% complete on chatbot.
+
+What will you do today?
+Continue to work on the chatbot.
+
+Is there anything in your way?
+There was one issue with database connectivity, but it was resolved today.
