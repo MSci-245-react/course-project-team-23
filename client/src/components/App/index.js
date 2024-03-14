@@ -47,8 +47,6 @@ const App = props => {
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/PasswordForget" element={<PasswordForget />} />
-          <Route path="/Recommendations" element={<Recommendations />} />
-          <Route path="/FilterPage" element={<FilterPage />} />
           {/* Protected Routes */}
           <Route
             path="/Discover"
@@ -63,6 +61,22 @@ const App = props => {
             element={
               <ProtectedRoute authenticated={authenticated}>
                 <UserInfo />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Recommendations"
+            element={
+              <ProtectedRoute authenticated={authenticated}>
+                <Recommendations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/FilterPage"
+            element={
+              <ProtectedRoute authenticated={authenticated}>
+                <FilterPage />
               </ProtectedRoute>
             }
           />
