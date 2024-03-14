@@ -14,7 +14,7 @@ import UserInfo from '../UserInfo';
 import Recommendations from '../Recommendations';
 import Plan from '../Plan'
 import {withFirebase} from '../Firebase';
-import FilterPage from '../FilterPage';
+import DailyPlanner from '../DailyPlanner';
 
 // Optionally, you can create a ProtectedRoute component
 const ProtectedRoute = ({children, authenticated}) => {
@@ -74,10 +74,10 @@ const App = props => {
             }
           />
           <Route
-            path="/FilterPage"
+            path="/DailyPlanner"
             element={
               <ProtectedRoute authenticated={authenticated}>
-                <FilterPage />
+                <DailyPlanner />
               </ProtectedRoute>
             }
           />

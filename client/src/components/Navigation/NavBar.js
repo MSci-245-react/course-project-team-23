@@ -12,7 +12,7 @@ const NavBar = () => {
         <Button variant="h6" component={Link} to="/" color="inherit">
           Landing
         </Button>
-        <Button variant="h6" component={Link} to="/FilterPage" color="inherit">
+        <Button variant="h6" component={Link} to="/DailyPlanner" color="inherit">
           Discover Recipes
         </Button>
         <Button
