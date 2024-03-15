@@ -86,7 +86,7 @@ const PlanningPage = () => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{fontWeight: 'bold', marginBottom: '1rem'}}
+          sx={{fontWeight: 'bold', marginBottom: '1rem', color: 'white'}}
         >
           Plan Your Meals
         </Typography>

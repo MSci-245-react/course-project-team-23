@@ -26,7 +26,7 @@ const TopRatedMeals = () => {
 
   return (
     <div>
-      <Typography variant="h5" sx={{ fontWeight: 'bold', marginBottom: '1rem' }}>
+      <Typography variant="h5" sx={{ fontWeight: 'bold', marginBottom: '1rem', color: 'black'}}>
         Top Reviewed Meals
       </Typography>
       <List sx={{ width: '100%' }}>

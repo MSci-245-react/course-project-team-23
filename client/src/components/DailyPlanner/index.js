@@ -128,6 +128,15 @@ const MealDropdown = () => {
         <Typography variant="h4" align="center" className={classes.title}>
           Daily Meal Planner
         </Typography>
+        <Typography variant="body1" style={{ marginBottom: '20px', color: 'white' }}>
+          Welcome to the Daily Meal Planner! Here's how you can use this planner to organize your meals:
+        </Typography>
+        <ol style={{ paddingLeft: '20px', color: 'white' }}>
+          <li style={{ marginBottom: '10px' }}>Select a meal from the dropdown menu.</li>
+          <li style={{ marginBottom: '10px' }}>Click the "Add Meal" button to add the selected meal to your planner.</li>
+          <li style={{ marginBottom: '10px' }}>You can remove a meal by clicking the delete icon on the meal card.</li>
+          <li style={{ marginBottom: '10px' }}>To view a summary of your meal plan, click the "Show Summary" button.</li>
+        </ol>
         <Select
           className={classes.select}
           value={selectedMeal}
