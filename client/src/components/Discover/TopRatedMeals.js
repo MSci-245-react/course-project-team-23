@@ -15,6 +15,10 @@ const TopRatedMeals = () => {
         return response.json();
       })
       .then(data => {
+        const normalizedMeals = data.map(meal => ({
+          ...meal,
+          avg_rating: Math.min(Math.max(parseFloat(meal.avg_rating), 0), 5)
+        }));
         setTopRatedMeals(data);
       })
       .catch(error => console.error('Error fetching data:', error));
@@ -30,13 +34,13 @@ const TopRatedMeals = () => {
           <ListItem key={index} divider>
             <ListItemText
               primary={meal['name']}
-              secondary={`Rating: ${meal.rating}`}
+              secondary={`Rating: ${meal.avg_rating}`}
               primaryTypographyProps={{ fontWeight: 'medium' }}
               secondaryTypographyProps={{ color: 'text.secondary' }}
             />
             <Rating
               name={`top-rated-${index}`}
-              value={meal.rating}
+              value={meal.avg_rating}
               readOnly
             />
           </ListItem>

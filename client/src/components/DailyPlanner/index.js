@@ -7,6 +7,8 @@ import NavBar from '../Navigation/NavBar';
 import Summary from './Summary'; // Import the SummaryPage component
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import StarIcon from '@mui/icons-material/Star';
+
 
 const useStyles = makeStyles(() => ({
   select: {
@@ -64,6 +66,10 @@ const useStyles = makeStyles(() => ({
       color: '#FF4444', // Lighter red on hover
     },
   },
+  starIcon: {
+    color: 'gold', // Star color
+    fontSize: '16px', //
+  },
 }));
 
 const MealDropdown = () => {
@@ -106,6 +112,14 @@ const MealDropdown = () => {
     updatedMealsList.splice(index, 1);
     setSelectedMealsList(updatedMealsList);
   };
+  const renderStars = (level) => {
+    const stars = [];
+    for (let i = 0; i < level; i++) {
+      stars.push(<StarIcon key={i} className={classes.starIcon} />);
+    }
+    return stars;
+  };
+
 
   return (
     <div>
@@ -127,6 +141,8 @@ const MealDropdown = () => {
             protein: meal['Protein'],
             fats: meal['Fats'],
             prepTime: meal['Prep Time'],
+            cooking: meal['Cooking Skill'],
+            cost: parseFloat(meal['Cost']).toFixed(2),
           }))}
           placeholder="Select a meal..."
           isSearchable
@@ -162,6 +178,8 @@ const MealDropdown = () => {
                     <Typography className={classes.mealContent} variant="body2">Protein: {meal.protein}</Typography>
                     <Typography className={classes.mealContent} variant="body2">Fats: {meal.fats}</Typography>
                     <Typography className={classes.mealContent} variant="body2">Prep Time: {meal.prepTime} mins</Typography>
+                    <Typography className={classes.mealContent} variant="body2">Cost:  ${meal.cost}</Typography>
+                    <Typography className={classes.mealContent} variant="body2">Skill Level: {renderStars(meal.cooking)}</Typography>
                   </CardContent>
                   <IconButton
                     className={classes.removeButton}
