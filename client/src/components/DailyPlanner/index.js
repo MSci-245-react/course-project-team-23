@@ -152,6 +152,7 @@ const MealDropdown = () => {
             prepTime: meal['Prep Time'],
             cooking: meal['Cooking Skill'],
             cost: parseFloat(meal['Cost']).toFixed(2),
+            equipment: meal['Equipment Needed']
           }))}
           placeholder="Select a meal..."
           isSearchable
@@ -189,6 +190,7 @@ const MealDropdown = () => {
                     <Typography className={classes.mealContent} variant="body2">Prep Time: {meal.prepTime} mins</Typography>
                     <Typography className={classes.mealContent} variant="body2">Cost:  ${meal.cost}</Typography>
                     <Typography className={classes.mealContent} variant="body2">Skill Level: {renderStars(meal.cooking)}</Typography>
+                    <Typography className={classes.mealContent} variant="body2">Equipment: {meal.equipment}</Typography>
                   </CardContent>
                   <IconButton
                     className={classes.removeButton}
