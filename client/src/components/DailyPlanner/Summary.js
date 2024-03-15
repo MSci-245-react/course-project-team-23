@@ -38,6 +38,7 @@ const Summary = ({ selectedMealsList }) => {
   const totalProtein = selectedMealsList.reduce((total, meal) => total + meal.protein, 0);
   const totalFats = selectedMealsList.reduce((total, meal) => total + meal.fats, 0);
   const totalPrepTime = selectedMealsList.reduce((total, meal) => total + meal.prepTime, 0);
+  const totalCost = selectedMealsList.reduce((total, meal) => total + parseFloat(meal.cost), 0);
 
   return (
     <Card className={classes.card}>
@@ -62,6 +63,9 @@ const Summary = ({ selectedMealsList }) => {
           </Typography>
           <Typography variant="body1" className={classes.totalItem}>
             Total Prep Time: {totalPrepTime} mins
+          </Typography>
+          <Typography variant="body1" className={classes.totalItem}>
+            Total Cost: ${parseFloat(totalCost).toFixed(2)}
           </Typography>
         </div>
       </CardContent>
