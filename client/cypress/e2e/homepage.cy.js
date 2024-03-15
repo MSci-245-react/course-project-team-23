@@ -1,4 +1,4 @@
-describe('empty spec', () => {
+describe('homepage', () => {
   it('can view the home page', () => {
     cy.visit('/');
     cy.contains('Welcome to Meal Planner');
