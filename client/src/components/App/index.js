@@ -15,6 +15,8 @@ import Recommendations from '../Recommendations';
 import Plan from '../Plan'
 import {withFirebase} from '../Firebase';
 import DailyPlanner from '../DailyPlanner';
+import CommunityForum from '../CommunityForum';
+import Tips from '../Tips';
 
 // Optionally, you can create a ProtectedRoute component
 const ProtectedRoute = ({children, authenticated}) => {
@@ -78,6 +80,22 @@ const App = props => {
             element={
               <ProtectedRoute authenticated={authenticated}>
                 <DailyPlanner />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/CommunityForum"
+            element={
+              <ProtectedRoute authenticated={authenticated}>
+                <CommunityForum />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Tips"
+            element={
+              <ProtectedRoute authenticated={authenticated}>
+                <Tips />
               </ProtectedRoute>
             }
           />

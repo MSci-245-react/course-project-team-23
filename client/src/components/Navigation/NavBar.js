@@ -15,13 +15,11 @@ const NavBar = () => {
         <Button variant="h6" component={Link} to="/DailyPlanner" color="inherit">
           Discover Recipes
         </Button>
-        <Button
-          variant="h6"
-          component={Link}
-          to="/CommunityForum"
-          color="inherit"
-        >
+        <Button variant="h6" component={Link} to="/CommunityForum" color="inherit">
           CommunityForum
+        </Button>
+        <Button variant="h6" component={Link} to="/Tips" color="inherit">
+          Tips
         </Button>
         <Button variant="h6" component={Link} to="/UserInfo" color="inherit">
           Your Info

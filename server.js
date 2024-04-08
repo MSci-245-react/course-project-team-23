@@ -199,6 +199,58 @@ app.get("/api/topRatedMeals", (req, res) => {
     }
   });
 });
+// Add a new endpoint for submitting meal reviews
+app.post('/api/submitPost', (req, res) => {
+  const { foodProductName, reviewText } = req.body;
+
+  // Fetch the meal_id based on the food product name
+  const sqlSelect = 'SELECT meal_id FROM c4desai.food_ingredients_and_allergens WHERE `Food Product` = ?';
+  pool.query(sqlSelect, [foodProductName], (error, results) => {
+    if (error) {
+      console.error('Error fetching meal_id:', error);
+      res.status(500).send({ error: 'Failed to submit review' });
+    } else {
+      if (results.length > 0) {
+        const mealId = results[0].meal_id;
+        // Insert the review into the database
+        const sqlInsert = 'INSERT INTO c4desai.forum_posts (meal_id, review_text) VALUES (?, ?)';
+        pool.query(sqlInsert, [mealId, reviewText], (error, results) => {
+          if (error) {
+            console.error('Error submitting review:', error);
+            res.status(500).send({ error: 'Failed to submit review' });
+          } else {
+            res.status(201).send({ message: 'Review submitted successfully' });
+          }
+        });
+      } else {
+        console.error('Meal not found:', foodProductName);
+        res.status(404).send({ error: 'Meal not found' });
+      }
+    }
+  });
+});
+
+
+app.get('/api/forumPosts', (req, res) => {
+  // Fetch forum posts along with meal names
+  const sqlSelect = `
+    SELECT forum_posts.id, forum_posts.meal_id, forum_posts.review_text, food_ingredients_and_allergens.\`Food Product\`
+    FROM forum_posts
+    INNER JOIN c4desai.food_ingredients_and_allergens ON forum_posts.meal_id = c4desai.food_ingredients_and_allergens.meal_id
+  `;
+  pool.query(sqlSelect, (error, results) => {
+    if (error) {
+      console.error('Error fetching forum posts:', error);
+      res.status(500).send({ error: 'Failed to fetch forum posts' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+
+
+
 
 // Start the server
 app.listen(port, () => {
