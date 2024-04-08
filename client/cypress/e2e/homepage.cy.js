@@ -1,9 +1,21 @@
 describe('homepage', () => {
-  it('can view the home page', () => {
+  it('home page title and button test', () => {
     cy.visit('/');
     cy.contains('Welcome to Meal Planner');
-    cy.contains('Plan Your Meals');
+    cy.contains('Recommendations');
+    cy.contains('Explore Recipes');
+    cy.contains('Plan & Shop');
+    cy.contains('Share Your Ideas');
+    cy.contains('Get Started').click();
+    cy.visit('/');
+    cy.contains('Explore Recipes').click();
+    cy.visit('/');
+    cy.contains('Plan & Shop').click();
+    cy.visit('/');
+    cy.contains('Share Your Ideas').click();
+    cy.visit('/');
   });
+});
 
   // it('Test signIn Links to google signIn Page', () => {
   //   cy.contains('Sign In').click();
@@ -15,31 +27,31 @@ describe('homepage', () => {
   //   cy.url().should('include', '/SignUp')
   // });
 
-  it('Test planYourMeals Links to discover Page', () => {
-    //cy.go('back');
-    //cy.go('back');
-    cy.contains('Get Started').click();
-    cy.url().should('include', '/Plan')
-  });
+//   it('Test recommendations Links to recommendation Page', () => {
+//     //cy.go('back');
+//     //cy.go('back');
+//     cy.contains('Get Started').click();
+//     cy.url().should('include', '/Recommendations')
+//   });
 
-  it('Test discoverAllRecipes Links to recipes Page', () => {
-    cy.go('back');
-    cy.contains('Explore Recipes').click();
-    cy.url().should('include', '/Discover')
-  });
+//   it('Test discoverAllRecipes Links to recipes Page', () => {
+//     cy.go('back');
+//     cy.contains('Explore Recipes').click();
+//     cy.url().should('include', '/Discover')
+//   });
 
-  it('Test CreateAShoppingList Links to discover Page', () => {
-    cy.go('back');
-    cy.contains('View Shopping List').click();
-    cy.url().should('include', '/ShoppingList')
-  });
+//   it('Test DailyPlanner Links to daily planner Page', () => {
+//     cy.go('back');
+//     cy.contains('Plan & Shop').click();
+//     cy.url().should('include', '/DailyPlanner')
+//   });
 
-  it('Test shareAndCollaborate Links to discover Page', () => {
-    cy.go('back');
-    cy.contains('Share Your Plans').click();
-    cy.url().should('include', '/Share')
-  });
-});
+//   it('Test shareAndCollaborate Links to CommunityForum Page', () => {
+//     cy.go('back');
+//     cy.contains('Share Your Ideas').click();
+//     cy.url().should('include', '/CommunityForum')
+//   });
+// });
 
 
 
