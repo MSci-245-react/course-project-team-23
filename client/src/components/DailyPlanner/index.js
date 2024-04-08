@@ -152,7 +152,8 @@ const MealDropdown = () => {
             prepTime: meal['Prep Time'],
             cooking: meal['Cooking Skill'],
             cost: parseFloat(meal['Cost']).toFixed(2),
-            equipment: meal['Equipment Needed']
+            equipment: meal['Equipment Needed'],
+            mainIngredient: meal['Main Ingredient'],
           }))}
           placeholder="Select a meal..."
           isSearchable

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Typography, Card, CardContent } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import FastfoodIcon from '@mui/icons-material/Fastfood';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import TimerIcon from '@mui/icons-material/Timer';
+import ListIcon from '@mui/icons-material/List';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -26,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '5px',
     color: 'black',
     fontSize: '1.1rem', // Increase font size
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
+    marginRight: '5px',
   },
 }));
 
@@ -48,24 +59,27 @@ const Summary = ({ selectedMealsList }) => {
             Meal Plan Summary
           </Typography>
           <Typography variant="body1" className={classes.totalItem}>
-            Total Calories: {totalCalories}
+            <LocalFireDepartmentIcon className={classes.icon} /> Total Calories: {totalCalories}
           </Typography>
           <Typography variant="body1" className={classes.totalItem}>
-            Total Carbs: {totalCarbs}
+            <FastfoodIcon className={classes.icon} /> Total Carbs: {totalCarbs}
+          </Typography>
+          <Typography variant="body1" className={classes.totalItem}>
+            <FitnessCenterIcon className={classes.icon} /> Total Protein: {totalProtein}
+          </Typography>
+          <Typography variant="body1" className={classes.totalItem}>
+            <AttachMoneyIcon className={classes.icon} /> Total Fats: {totalFats}
           </Typography>
         </div>
         <div>
           <Typography variant="body1" className={classes.totalItem}>
-            Total Protein: {totalProtein}
+            <TimerIcon className={classes.icon} /> Total Prep Time: {totalPrepTime} mins
           </Typography>
           <Typography variant="body1" className={classes.totalItem}>
-            Total Fats: {totalFats}
+            <AttachMoneyIcon className={classes.icon} /> Total Cost: ${parseFloat(totalCost).toFixed(2)}
           </Typography>
           <Typography variant="body1" className={classes.totalItem}>
-            Total Prep Time: {totalPrepTime} mins
-          </Typography>
-          <Typography variant="body1" className={classes.totalItem}>
-            Total Cost: ${parseFloat(totalCost).toFixed(2)}
+            <ListIcon className={classes.icon} /> Grocery List: {selectedMealsList.map((meal) => meal.mainIngredient).join(', ')}
           </Typography>
         </div>
       </CardContent>
@@ -74,4 +88,3 @@ const Summary = ({ selectedMealsList }) => {
 };
 
 export default Summary;
-
