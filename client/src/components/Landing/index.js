@@ -54,12 +54,11 @@ const Landing = () => {
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12} md={6}>
             <Typography variant="h5" color="primary">
-              Plan Your Meals
+              Recommendations
             </Typography>
             <Typography>
-              Easily plan your meals for the week ahead. Create customized meal
-              plans based on your dietary preferences, nutritional goals, and
-              schedule.
+              Explore personalized recipe recommendations based on your dietary preferences and allergies.
+              Discover delicious options tailored to your needs.
             </Typography>
             <Button
               variant="contained"
@@ -91,20 +90,20 @@ const Landing = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h5" color="primary">
-              Create a Shopping List
+              Daily Meal Planner
             </Typography>
             <Typography>
-              Generate a shopping list based on your meal plan. Stay organized
-              and ensure you have all the ingredients you need for your recipes.
+              Create customized meal plans based on your dietary preferences, 
+              nutritional goals, cost, schedule, and ingredient lists.
             </Typography>
             <Button
               variant="contained"
               component={Link}
-              to="/ShoppingList"
+              to="/DailyPlanner"
               color="primary"
               style={{marginTop: '1rem'}}
             >
-              View Shopping List
+              Plan & Shop
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -112,17 +111,17 @@ const Landing = () => {
               Share and Collaborate
             </Typography>
             <Typography>
-              Share your meal plans with family and friends. Collaborate on meal
+              Share your comments on recipes with the community. Collaborate on meal
               ideas and create shared meal plans for special occasions.
             </Typography>
             <Button
               variant="contained"
               component={Link}
-              to="/Share"
+              to="/CommunityForum"
               color="primary"
               style={{marginTop: '1rem'}}
             >
-              Share Your Plans
+              Share Your Ideas
             </Button>
           </Grid>
         </Grid>
